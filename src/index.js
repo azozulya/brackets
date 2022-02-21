@@ -5,38 +5,26 @@ module.exports = function check(str, bracketsConfig) {
   let isStop = false;
   let i = 0;
 
-  // bracketsConfig.map(([key, val]) => {
-  //   if(key === val) {
-  //     str.replace()
-  //   }
-  //   console.log(key, val);
-  // })
-  
-
-
-console.log(brackets);
   while(!isStop && i < brackets.length) {
     const bracket = brackets[i]; 
     
     if(config[bracket]) {
       if(bracket === config[bracket]) {
-        const openBracket = arr.pop(); 
+        const openBracket = arr.length && arr.pop(); 
         if(openBracket !== bracket) {
-          arr.push(openBracket);
+          openBracket && arr.push(openBracket);
           arr.push(bracket);
         }
       } else
         arr.push(bracket);
     } else {
-      const openBracket = arr.length && arr.pop(); console.log('openBracket: ', openBracket, bracket);
+      const openBracket = arr.length && arr.pop(); 
       if(!openBracket || config[openBracket] !== bracket) {
         isStop = true;
       }
     }
     i++;
   };
- console.log(!isStop);
-console.log(arr.length);
-  return isStop ? !isStop : arr.length === 0;
 
+  return isStop ? !isStop : arr.length === 0;
 }
